@@ -15,6 +15,13 @@ function succeed(item) {
 
 function fail(item) {
   const newItem = { ...item };
+  if (newItem.enhancement < 15) {
+    newItem.enhancement -= 5;
+  } else if (newItem.enhancement > 16) {
+    newItem.enhancement -= 1;
+  } else if (newItem.enhancement >= 15) {
+    newItem.enhancement -= 10;
+  }
   return newItem;
 }
 

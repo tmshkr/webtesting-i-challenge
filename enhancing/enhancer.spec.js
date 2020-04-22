@@ -43,4 +43,27 @@ describe("enhancer.js", () => {
       expect(result.durability).toBe(50);
     });
   });
+
+  describe("fail", () => {
+    it("returns a new object", () => {
+      const item = { name: "foo", enhancement: 15, durability: 50 };
+      const result = enhancer.fail(item);
+      expect(result).not.toBe(item);
+    });
+    it("decreases the durability by 5 when enhancement is less that 15", () => {
+      const item = { name: "foo", enhancement: 14, durability: 50 };
+      const result = enhancer.fail(item);
+      expect(result.enhancement).toBe(9);
+    });
+    it("decreases the durability by 10 when enhancement >= 15 and <= 16", () => {
+      const item = { name: "foo", enhancement: 15, durability: 50 };
+      const result = enhancer.fail(item);
+      expect(result.enhancement).toBe(5);
+    });
+    it("decreases the durability by 1 when enhancement > 16", () => {
+      const item = { name: "foo", enhancement: 17, durability: 50 };
+      const result = enhancer.fail(item);
+      expect(result.enhancement).toBe(16);
+    });
+  });
 });
