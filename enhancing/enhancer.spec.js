@@ -19,4 +19,28 @@ describe("enhancer.js", () => {
       expect(result.enhancement).toBe(15);
     });
   });
+
+  describe("succeed", () => {
+    it("returns a new object", () => {
+      const item = { name: "foo", enhancement: 15, durability: 50 };
+      const result = enhancer.succeed(item);
+      expect(result).not.toBe(item);
+    });
+    it("returns a new object with an enhancement increased by 1", () => {
+      const item = { name: "foo", enhancement: 15, durability: 50 };
+      const result = enhancer.succeed(item);
+      expect(result.enhancement).toBe(16);
+    });
+    it("does not increase the enhancement to be greater than 20", () => {
+      const item = { name: "foo", enhancement: 20, durability: 50 };
+      const result = enhancer.succeed(item);
+      expect(result.enhancement).toBe(20);
+    });
+    it("does not modify properties besides enhancement", () => {
+      const item = { name: "foo", enhancement: 15, durability: 50 };
+      const result = enhancer.succeed(item);
+      expect(result.name).toBe("foo");
+      expect(result.durability).toBe(50);
+    });
+  });
 });
