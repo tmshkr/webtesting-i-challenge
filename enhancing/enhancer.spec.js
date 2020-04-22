@@ -66,4 +66,23 @@ describe("enhancer.js", () => {
       expect(result.enhancement).toBe(16);
     });
   });
+
+  describe("get", () => {
+    it("returns a new object", () => {
+      const item = { name: "Iron Sword", enhancement: 7, durability: 50 };
+      const result = enhancer.get(item);
+      expect(result).not.toBe(item);
+    });
+    it("modifies the name correctly", () => {
+      const item = { name: "Iron Sword", enhancement: 7, durability: 50 };
+      const result = enhancer.get(item);
+      expect(result.name).toBe("[+7] Iron Sword");
+    });
+    it("does not modify properties besides name", () => {
+      const item = { name: "Iron Sword", enhancement: 7, durability: 50 };
+      const result = enhancer.get(item);
+      expect(result.enhancement).toBe(7);
+      expect(result.durability).toBe(50);
+    });
+  });
 });
