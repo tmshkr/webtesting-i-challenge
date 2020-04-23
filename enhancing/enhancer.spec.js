@@ -53,14 +53,14 @@ describe("enhancer.js", () => {
     it("decreases the durability by 5 when enhancement is less that 15", () => {
       const item = { name: "foo", enhancement: 14, durability: 50 };
       const result = enhancer.fail(item);
-      expect(result.enhancement).toBe(9);
+      expect(result.durability).toBe(45);
     });
-    it("decreases the durability by 10 when enhancement >= 15 and <= 16", () => {
+    it("decreases the durability by 10 when enhancement >= 15", () => {
       const item = { name: "foo", enhancement: 15, durability: 50 };
       const result = enhancer.fail(item);
-      expect(result.enhancement).toBe(5);
+      expect(result.durability).toBe(40);
     });
-    it("decreases the durability by 1 when enhancement > 16", () => {
+    it("decreases the enhancement by 1 when enhancement > 16", () => {
       const item = { name: "foo", enhancement: 17, durability: 50 };
       const result = enhancer.fail(item);
       expect(result.enhancement).toBe(16);
